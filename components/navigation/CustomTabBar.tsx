@@ -9,8 +9,6 @@ const CustomTabBar = ({
   descriptors,
   navigation,
 }: BottomTabBarProps) => {
-  //   console.log('[🧪]  CustomTabBar  state', JSON.stringify(state, null, 2))
-  //   console.log('[🧪]  CustomTabBar  descriptors', JSON.stringify(descriptors, null, 2))
   return (
     <View className="flex-row bg-white relative border-t border-gray-200">
       {state.routes.map((route, index) => {
