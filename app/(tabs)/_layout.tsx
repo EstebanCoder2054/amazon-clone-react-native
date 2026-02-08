@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <StyledTabs headerClassName='bg-dark text-white' tabBar={(props) => <CustomTabBar {...props} />}>
         <Tabs.Screen name="index" options={{ headerShown: false, tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" color={color} size={size} />
+            <Ionicons name="home-outline" color={color} size={size} /> 
         ) }} />
 
         <Tabs.Screen name="profile" options={{ tabBarIcon: ({ color, size }) => (
