@@ -69,10 +69,12 @@ const SignIn = () => {
     if (!isLoadedSignUp) return;
 
     try {
-      await signUp.create({
+      const createAccountAttempt = await signUp.create({
         emailAddress: data.email,
         password: data.password,
       });
+
+      console.log('createAccountAttempt', createAccountAttempt);
 
       router.dismissTo('/(tabs)/profile')
       Alert.alert('Account created', 'Yeah, account created successfully!')
