@@ -1,12 +1,19 @@
 import CustomTabBar from '@/components/navigation/CustomTabBar'
 import { StyledTabs } from '@/components/navigation/tabs'
 import { Ionicons } from '@expo/vector-icons'
-import { Tabs } from 'expo-router'
+import { Tabs, useRouter } from 'expo-router'
 import React from 'react'
 
 const Layout = () => {
+
+  const router = useRouter();
+  
   return (
-    <StyledTabs headerClassName='bg-dark text-white' tabBar={(props) => <CustomTabBar {...props} />}>
+    <StyledTabs
+      headerClassName="bg-dark"
+      headerTextClassName="text-white"
+      tabBar={(props) => <CustomTabBar {...props} />}
+    >
         <Tabs.Screen name="index" options={{ headerShown: false, tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" color={color} size={size} /> 
         ) }} />
@@ -19,7 +26,12 @@ const Layout = () => {
             <Ionicons name="cart-outline" color={color} size={size} />
         ) }} />
         
-        <Tabs.Screen name="rufus" />
+        <Tabs.Screen name="rufus" listeners={() => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            router.push('/(modal)/rufusModal');
+          }
+        })}/>
 
         <Tabs.Screen name="more" options={{ tabBarIcon: ({ color, size }) => (
             <Ionicons name="menu-outline" color={color} size={size} />
