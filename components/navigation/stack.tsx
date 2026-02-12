@@ -5,18 +5,21 @@ import { TextStyle, ViewStyle } from 'react-native';
 // https://github.com/karakeep-app/karakeep/blob/300f3c5d0b661c430ad2f6b479b151ec65f14243/apps/mobile/components/navigation/stack.tsx
 interface StackProps extends React.ComponentProps<typeof Stack> {
   contentStyle?: ViewStyle;
-  headerStyle?: TextStyle;
+  headerStyle?: ViewStyle;
+  headerTextStyle?: TextStyle;
 }
 
-function StackImpl({ contentStyle, headerStyle, ...props }: StackProps) {
+function StackImpl({ contentStyle, headerStyle, headerTextStyle, ...props }: StackProps) {
+  const { color: _ignoredColor, ...headerViewStyle } = (headerStyle ?? {}) as ViewStyle & {
+    color?: string;
+  };
   props.screenOptions = {
     ...props.screenOptions,
     contentStyle,
-    headerStyle: {
-      backgroundColor: headerStyle?.backgroundColor?.toString(),
-    },
+    headerStyle: headerViewStyle,
     navigationBarColor: contentStyle?.backgroundColor?.toString(),
-    headerTintColor: headerStyle?.color?.toString(),
+    headerTintColor: headerTextStyle?.color?.toString(),
+    headerTitleStyle: headerTextStyle,
   };
   return <Stack {...props} />;
 }
@@ -25,4 +28,5 @@ function StackImpl({ contentStyle, headerStyle, ...props }: StackProps) {
 export const StyledStack = cssInterop(StackImpl, {
   contentClassName: 'contentStyle',
   headerClassName: 'headerStyle',
+  headerTextClassName: 'headerTextStyle',
 });

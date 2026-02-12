@@ -19,7 +19,8 @@ const Profile = () => {
         </View>
       </SignedOut>
 
-      <SignedIn><Text>Signed in</Text></SignedIn>
+      <SignedIn><Text>Already signed in</Text>
+      </SignedIn>
     </View>
   )
 }
